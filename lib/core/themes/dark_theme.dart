@@ -9,10 +9,9 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
     surface: Colors.grey[850]!,
 
     // Define background color
-    background: Colors.black45,
+    background: Colors.grey[900]!,
   ),
   hintColor: Colors.blueAccent,
-
   textTheme: const TextTheme(
     titleLarge: TextStyle(
       color: Colors.white,
@@ -20,14 +19,21 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
       fontSize: 24.0,
       fontWeight: FontWeight.w700,
     ),
+    titleMedium: TextStyle(
+      color: Colors.white,
+      fontFamily: 'NotoSans',
+      fontSize: 20.0,
+      fontWeight: FontWeight.w700,
+    ),
     bodyMedium: TextStyle(
-        color: Colors.white,
-        fontSize: 14.0,
-        fontWeight: FontWeight.w700,
-        fontFamily: 'NotoSans'),
+      color: Colors.white,
+      fontSize: 14.0,
+      fontWeight: FontWeight.w700,
+      fontFamily: 'NotoSans',
+    ),
   ),
-  buttonTheme: const ButtonThemeData(
-    buttonColor: Colors.blueAccent,
+  buttonTheme: ButtonThemeData(
+    buttonColor: Colors.pink[400]!,
     textTheme: ButtonTextTheme.primary,
   ),
 );

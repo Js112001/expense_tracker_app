@@ -1,4 +1,8 @@
 import 'package:expense_tracker_app/modules/expense_management/presentation/controllers/home_controller.dart';
+import 'package:expense_tracker_app/modules/expense_management/presentation/widgets/add_expense_bottom_btn.dart';
+import 'package:expense_tracker_app/modules/expense_management/presentation/widgets/categories_grid.dart';
+import 'package:expense_tracker_app/modules/expense_management/presentation/widgets/expense_summary_card.dart';
+import 'package:expense_tracker_app/modules/expense_management/presentation/widgets/latest_entries.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,39 +12,45 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Expense Tracker'),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            Text(
-              'Welcome to the Expense Tracker!',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.deepOrange[400]!,
-                    Colors.orange,
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const CircleAvatar(radius: 25),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          'Hello Jabbar!',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                      ],
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.notifications_active_outlined,
+                        size: 30,
+                      ),
+                    ),
                   ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
                 ),
-              ),
+                const ExpenseSummaryCard(),
+                const CategoriesGrid(),
+                const LatestEntries(),
+              ],
             ),
-          ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(
-          Icons.add,
-        ),
-      ),
+      bottomNavigationBar: const AddExpenseButton(),
     );
   }
 }
