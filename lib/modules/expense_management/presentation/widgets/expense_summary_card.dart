@@ -53,7 +53,7 @@ class ExpenseSummaryCard extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.white.withOpacity(0.1),
+                  color: Colors.white.withOpacity(0.2),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),

@@ -1,5 +1,6 @@
 class ExpenseEntity {
   final String? id;
+  final String name;
   final double amount;
   final String category;
   final DateTime date;
@@ -7,6 +8,7 @@ class ExpenseEntity {
 
   ExpenseEntity({
     this.id,
+    required this.name,
     required this.amount,
     required this.category,
     required this.date,

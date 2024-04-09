@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -14,7 +15,7 @@ class LatestEntries extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Latest Entries',
+                'Latest Expenses',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontSize: 20,
                       fontWeight: FontWeight.normal,
@@ -22,7 +23,7 @@ class LatestEntries extends StatelessWidget {
                     ),
               ),
               TextButton(
-                onPressed: () => Get.toNamed('/all-entries'),
+                onPressed: () => Get.toNamed(AppRoutes.allExpenses),
                 child: Text(
                   'View all',
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(

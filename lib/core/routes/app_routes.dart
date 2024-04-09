@@ -2,5 +2,6 @@ class AppRoutes {
   AppRoutes._();
 
   static String home = '/home';
-  static String allEntries = '/all-entries';
+  static String allExpenses = '/expenses';
+  static String addExpense = '/expenses/add';
 }

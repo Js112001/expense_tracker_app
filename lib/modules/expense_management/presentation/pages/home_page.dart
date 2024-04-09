@@ -2,7 +2,7 @@ import 'package:expense_tracker_app/modules/expense_management/presentation/cont
 import 'package:expense_tracker_app/modules/expense_management/presentation/widgets/add_expense_bottom_btn.dart';
 import 'package:expense_tracker_app/modules/expense_management/presentation/widgets/categories_grid.dart';
 import 'package:expense_tracker_app/modules/expense_management/presentation/widgets/expense_summary_card.dart';
-import 'package:expense_tracker_app/modules/expense_management/presentation/widgets/latest_entries.dart';
+import 'package:expense_tracker_app/modules/expense_management/presentation/widgets/latest_expenses.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

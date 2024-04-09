@@ -1,4 +1,5 @@
 import 'package:expense_tracker_app/modules/expense_management/presentation/controllers/home_controller.dart';
+import 'package:expense_tracker_app/utils/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,19 +9,7 @@ class AllExpensesPage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'Latest Entries',
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontSize: 20,
-                fontWeight: FontWeight.normal,
-                fontFamily: 'NotoSans',
-              ),
-        ),
-        // ignore: deprecated_member_use
-        backgroundColor: Theme.of(context).backgroundColor,
-      ),
+      appBar: const CustomAppBar(title: 'All Expenses'),
       body: SingleChildScrollView(
         child: Column(
           children: [

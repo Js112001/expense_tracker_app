@@ -1,4 +1,6 @@
+import 'package:expense_tracker_app/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AddExpenseButton extends StatelessWidget {
   const AddExpenseButton({super.key});
@@ -20,7 +22,7 @@ class AddExpenseButton extends StatelessWidget {
           horizontal: 20,
         ),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () => Get.toNamed(AppRoutes.addExpense),
           style: ButtonStyle(
             backgroundColor: MaterialStatePropertyAll(
               Theme.of(context).colorScheme.primary,

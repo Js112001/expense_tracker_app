@@ -3,12 +3,14 @@ import 'package:expense_tracker_app/modules/expense_management/domain/entities/e
 class ExpenseModel extends ExpenseEntity {
   ExpenseModel({
     String? id,
+    required String name,
     required double amount,
     required String category,
     required DateTime date,
     String? notes,
   }) : super(
           id: id,
+          name: name,
           amount: amount,
           category: category,
           date: date,
@@ -18,6 +20,7 @@ class ExpenseModel extends ExpenseEntity {
   factory ExpenseModel.fromJson(Map<String, dynamic> json) {
     return ExpenseModel(
       id: json['id'] as String?,
+      name: json['name'] as String,
       amount: json['amount'] as double,
       category: json['category'] as String,
       date: DateTime.parse(json['date'] as String),
@@ -28,6 +31,7 @@ class ExpenseModel extends ExpenseEntity {
   Map<String, dynamic> toJson() {
     return {
       'id': id ?? '',
+      'name': name,
       'amount': amount,
       'category': category,
       'date': date.toIso8601String(),
