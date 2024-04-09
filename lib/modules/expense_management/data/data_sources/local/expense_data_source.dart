@@ -12,14 +12,14 @@ class ExpenseDataSource {
     });
   }
 
-  Future<void> addExpense(ExpenseModel expense) async {
+  Future<int> addExpense(ExpenseModel expense) async {
     final db = await _databaseHelper.database;
-    await db.insert('expenses', expense.toJson());
+    return await db.insert('expenses', expense.toJson());
   }
 
-  Future<void> updateExpense(ExpenseModel expense) async {
+  Future<int> updateExpense(ExpenseModel expense) async {
     final db = await _databaseHelper.database;
-    await db.update(
+    return await db.update(
       'expenses',
       expense.toJson(),
       where: 'id = ?',
@@ -27,9 +27,9 @@ class ExpenseDataSource {
     );
   }
 
-  Future<void> deleteExpense(String expenseId) async {
+  Future<int> deleteExpense(String expenseId) async {
     final db = await _databaseHelper.database;
-    await db.delete(
+    return await db.delete(
       'expenses',
       where: 'id = ?',
       whereArgs: [expenseId],

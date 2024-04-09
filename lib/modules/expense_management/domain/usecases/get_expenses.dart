@@ -3,7 +3,6 @@ import 'package:expense_tracker_app/modules/expense_management/domain/entities/e
 import 'package:expense_tracker_app/modules/expense_management/domain/repository/expense_repository.dart';
 
 class GetExpensesUseCase extends UseCase<List<ExpenseEntity>, void> {
-
   final ExpenseRepository _expenseRepository;
 
   GetExpensesUseCase(this._expenseRepository);
@@ -12,5 +11,4 @@ class GetExpensesUseCase extends UseCase<List<ExpenseEntity>, void> {
   Future<List<ExpenseEntity>> call({void params}) async {
     return await _expenseRepository.getExpenses();
   }
-  
 }

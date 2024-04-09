@@ -1,8 +1,9 @@
 import 'package:expense_tracker_app/core/routes/app_routes.dart';
+import 'package:expense_tracker_app/modules/expense_management/presentation/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 
-class LatestEntries extends StatelessWidget {
+class LatestEntries extends GetView<HomeController> {
   const LatestEntries({super.key});
 
   @override
@@ -34,35 +35,46 @@ class LatestEntries extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
-          height: MediaQuery.sizeOf(context).height / 3,
-          child: ListView.builder(
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return ListTile(
-                leading: const Icon(
-                  Icons.ac_unit_outlined,
-                  size: 35,
-                  color: Colors.cyan,
+        controller.expenses.isNotEmpty
+            ? SizedBox(
+                height: MediaQuery.sizeOf(context).height / 3,
+                child: ListView.builder(
+                  itemCount: controller.expenses.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      leading: const Icon(
+                        Icons.ac_unit_outlined,
+                        size: 35,
+                        color: Colors.cyan,
+                      ),
+                      title: Text(
+                        'Breakfast',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      subtitle: Text(
+                        '02 Dec 2020',
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      trailing: Text(
+                        '\$ 10',
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                              fontSize: 18,
+                            ),
+                      ),
+                    );
+                  },
                 ),
-                title: Text(
-                  'Breakfast',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                subtitle: Text(
-                  '02 Dec 2020',
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-                trailing: Text(
-                  '\$ 10',
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontSize: 18,
+              )
+            : Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'No Expenses Recorded Yet',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                 ),
-              );
-            },
-          ),
-        ),
+              ),
       ],
     );
   }

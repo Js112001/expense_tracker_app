@@ -2,7 +2,7 @@ import 'package:expense_tracker_app/modules/expense_management/domain/entities/e
 
 abstract class ExpenseRepository {
   Future<List<ExpenseEntity>> getExpenses();
-  Future<void> addExpense(ExpenseEntity expense);
-  Future<void> updateExpense(ExpenseEntity expense);
-  Future<void> deleteExpense(String expenseId);
+  Future<int> addExpense(ExpenseEntity expense);
+  Future<int> updateExpense(ExpenseEntity expense);
+  Future<int> deleteExpense(String expenseId);
 }

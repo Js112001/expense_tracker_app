@@ -9,13 +9,13 @@ class ExpenseRepoImpl extends ExpenseRepository {
   ExpenseRepoImpl(this._expenseDataSource);
 
   @override
-  Future<void> addExpense(ExpenseEntity expense) async {
-    await _expenseDataSource.addExpense(expense as ExpenseModel);
+  Future<int> addExpense(ExpenseEntity expense) async {
+    return await _expenseDataSource.addExpense(expense as ExpenseModel);
   }
 
   @override
-  Future<void> deleteExpense(String expenseId) async {
-    await _expenseDataSource.deleteExpense(expenseId);
+  Future<int> deleteExpense(String expenseId) async {
+    return await _expenseDataSource.deleteExpense(expenseId);
   }
 
   @override
@@ -25,8 +25,8 @@ class ExpenseRepoImpl extends ExpenseRepository {
   }
 
   @override
-  Future<void> updateExpense(ExpenseEntity expense) async {
-    await _expenseDataSource.updateExpense(expense as ExpenseModel);
+  Future<int> updateExpense(ExpenseEntity expense) async {
+    return await _expenseDataSource.updateExpense(expense as ExpenseModel);
   }
   
 }

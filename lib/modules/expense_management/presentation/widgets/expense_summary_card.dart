@@ -1,6 +1,8 @@
+import 'package:expense_tracker_app/modules/expense_management/presentation/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class ExpenseSummaryCard extends StatelessWidget {
+class ExpenseSummaryCard extends GetView<HomeController> {
   const ExpenseSummaryCard({super.key});
 
   @override
@@ -32,20 +34,16 @@ class ExpenseSummaryCard extends StatelessWidget {
                 children: [
                   Text(
                     'Total Expenses',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(
-                      fontSize: 20,
-                    ),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontSize: 20,
+                        ),
                   ),
-                  Text(
-                    '\$ 4,231',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge
-                        ?.copyWith(
-                      fontSize: 32,
+                  Obx(
+                    () => Text(
+                      '\$ ${controller.totalExpense.value}',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontSize: 32,
+                          ),
                     ),
                   ),
                 ],
@@ -56,28 +54,32 @@ class ExpenseSummaryCard extends StatelessWidget {
                   color: Colors.white.withOpacity(0.2),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                  child: DropdownButton<String>(
-                    value: 'Weekly',
-                    onChanged: (String? newValue) {
-                      //
-                    },
-                    items: <String>['Weekly', 'Monthly']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium
-                              ?.copyWith(
-                            fontSize: 22,
-                            fontFamily: 'NotoSans',
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  child: Obx(
+                    () => DropdownButton<String>(
+                      value: controller.orderBy.value,
+                      onChanged: (String? newValue) {
+                        controller.orderBy.value = newValue ?? 'Weekly';
+                        debugPrint('order:: ${controller.orderBy.value}');
+                      },
+                      items: <String>['Weekly', 'Monthly']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                  fontSize: 22,
+                                  fontFamily: 'NotoSans',
+                                ),
                           ),
-                        ),
-                      );
-                    }).toList(),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               ),
