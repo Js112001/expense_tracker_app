@@ -47,9 +47,64 @@ class ExpenseController extends GetxController {
     getExpenses();
   }
 
+  void showDeleteDialog(ExpenseEntity expense, BuildContext context) {
+    Get.defaultDialog(
+      titleStyle: Theme.of(context).textTheme.titleMedium,
+      title: 'Delete Expense',
+      middleText: 'Are you sure you want to delete this expense?',
+      middleTextStyle: Theme.of(context).textTheme.titleSmall,
+      actions: [
+        ElevatedButton(
+          onPressed: () async {
+            Get.back();
+            _deleteExpense(expense);
+          },
+          child: const Text('Delete'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.back(); // Close the dialog
+          },
+          child: const Text('Cancel'),
+        ),
+      ],
+    );
+  }
+
+  void _deleteExpense(ExpenseEntity expense) async {
+    try {
+      final response = await _deleteExpenseUseCase(
+          params: expense.id);
+      if (response == 0) {
+        Get.snackbar(
+          'Delete Expense',
+          'Expense Delete Failed',
+          backgroundColor: Colors.redAccent,
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      } else {
+        Get.snackbar(
+          'Delete Expense',
+          'Expense Deleted Successfully',
+          backgroundColor: Colors.lightGreenAccent,
+          snackPosition: SnackPosition.BOTTOM,
+        );
+        getExpenses();
+      }
+    } catch(e) {
+      debugPrint('Error: $e');
+      Get.snackbar(
+        'Delete Expense',
+        'Expense Delete Failed',
+        backgroundColor: Colors.redAccent,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
   void getExpenses() async {
     expenses.value = await getExpensesUseCase();
-    allExpenses.value = expenses;
+    allExpenses.value = await getExpensesUseCase();
     if (orderBy.value == AppConstants.orderBy[0]) {
       // Weekly
       final weekStart =
@@ -58,8 +113,8 @@ class ExpenseController extends GetxController {
 
       expenses.value = expenses.where((element) {
         final expense = element as ExpenseEntity;
-        return expense.date.isAfter(weekStart) &&
-            expense.date.isBefore(weekEnd);
+        return expense.date.day == weekStart.day || (expense.date.isAfter(weekStart) &&
+            expense.date.isBefore(weekEnd));
       }).toList();
     } else {
       // Monthly
@@ -68,8 +123,8 @@ class ExpenseController extends GetxController {
       final monthEnd = DateTime(now.year, now.month + 1, 0);
       expenses.value = expenses.where((element) {
         final expense = element as ExpenseEntity;
-        return expense.date.isAfter(monthStart) &&
-            expense.date.isBefore(monthEnd);
+        return expense.date.month == monthStart.month || (expense.date.isAfter(monthStart) &&
+            expense.date.isBefore(monthEnd));
       }).toList();
     }
     calculateExpenses();
@@ -77,7 +132,7 @@ class ExpenseController extends GetxController {
 
   void calculateExpenses() {
     int index = 0;
-    final categoryPrices = [0.0,0.0,0.0,0.0].obs;
+    final categoryPrices = [0.0, 0.0, 0.0, 0.0].obs;
     // Calculate total expense
     for (var category in categories) {
       var categoryPrice = 0.0;

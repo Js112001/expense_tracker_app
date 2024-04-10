@@ -41,11 +41,13 @@ class LatestEntries extends GetView<ExpenseController> {
             ? SizedBox(
                 height: MediaQuery.sizeOf(context).height / 4,
                 child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: controller.expenses.length,
                   itemBuilder: (context, index) {
                     index = controller.expenses.length - index - 1;
                     final expense = controller.expenses[index] as ExpenseEntity;
                     return ListTile(
+                      onLongPress: () =>
+                          controller.showDeleteDialog(expense, context),
                       leading: AppConstants.allCategories
                           .where(
                               (element) => element['name'] == expense.category)
@@ -56,7 +58,7 @@ class LatestEntries extends GetView<ExpenseController> {
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       subtitle: Text(
-                        expense.date.toString().substring(0,10),
+                        expense.date.toString().substring(0, 10),
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                       trailing: Text(

@@ -26,6 +26,8 @@ class AllExpensesPage extends GetView<ExpenseController> {
                           final expense =
                               controller.allExpenses[index] as ExpenseEntity;
                           return ListTile(
+                            onLongPress: () => controller.showDeleteDialog(
+                                expense, context),
                             leading: AppConstants.allCategories
                                 .where((element) =>
                                     element['name'] == expense.category)

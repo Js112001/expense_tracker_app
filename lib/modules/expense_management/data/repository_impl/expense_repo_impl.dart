@@ -27,7 +27,7 @@ class ExpenseRepoImpl extends ExpenseRepository {
   }
 
   @override
-  Future<int> deleteExpense(String expenseId) async {
+  Future<int> deleteExpense(int expenseId) async {
     return await _expenseDataSource.deleteExpense(expenseId);
   }
 

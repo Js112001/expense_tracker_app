@@ -27,7 +27,7 @@ class ExpenseDataSource {
     );
   }
 
-  Future<int> deleteExpense(String expenseId) async {
+  Future<int> deleteExpense(int expenseId) async {
     final db = await _databaseHelper.database;
     return await db.delete(
       'expenses',
