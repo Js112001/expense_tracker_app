@@ -49,7 +49,7 @@ class ExpenseController extends GetxController {
 
   void getExpenses() async {
     expenses.value = await getExpensesUseCase();
-    allExpenses.value = expenses.value;
+    allExpenses.value = expenses;
     if (orderBy.value == AppConstants.orderBy[0]) {
       // Weekly
       final weekStart =

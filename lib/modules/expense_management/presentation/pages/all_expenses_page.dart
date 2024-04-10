@@ -13,55 +13,57 @@ class AllExpensesPage extends GetView<ExpenseController> {
     return Scaffold(
       appBar: const CustomAppBar(title: 'All Expenses'),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            controller.allExpenses.isNotEmpty
-                ? SizedBox(
-                    height: MediaQuery.sizeOf(context).height,
-                    child: ListView.builder(
-                      itemCount: controller.allExpenses.length,
-                      itemBuilder: (context, index) {
-                        index = controller.allExpenses.length - index - 1;
-                        final expense =
-                            controller.allExpenses[index] as ExpenseEntity;
-                        return ListTile(
-                          leading: AppConstants.allCategories
-                              .where((element) =>
-                                  element['name'] == expense.category)
-                              .toList()
-                              .first['icon'] as Widget,
-                          title: Text(
-                            expense.name,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          subtitle: Text(
-                            expense.date.toString().substring(0, 10),
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                          trailing: Text(
-                            '\$ ${expense.amount}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleSmall
-                                ?.copyWith(
-                                  fontSize: 18,
-                                ),
-                          ),
-                        );
-                      },
+        child: Obx(
+          () => Column(
+            children: [
+              controller.allExpenses.isNotEmpty
+                  ? SizedBox(
+                      height: MediaQuery.sizeOf(context).height,
+                      child: ListView.builder(
+                        itemCount: controller.allExpenses.length,
+                        itemBuilder: (context, index) {
+                          index = controller.allExpenses.length - index - 1;
+                          final expense =
+                              controller.allExpenses[index] as ExpenseEntity;
+                          return ListTile(
+                            leading: AppConstants.allCategories
+                                .where((element) =>
+                                    element['name'] == expense.category)
+                                .toList()
+                                .first['icon'] as Widget,
+                            title: Text(
+                              expense.name,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            subtitle: Text(
+                              expense.date.toString().substring(0, 10),
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                            trailing: Text(
+                              '\$ ${expense.amount}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall
+                                  ?.copyWith(
+                                    fontSize: 18,
+                                  ),
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  : Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'No Expenses Recorded Yet',
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
                     ),
-                  )
-                : Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'No Expenses Recorded Yet',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                  ),
-          ],
+            ],
+          ),
         ),
       ),
     );
