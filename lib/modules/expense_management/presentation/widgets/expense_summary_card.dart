@@ -1,8 +1,9 @@
-import 'package:expense_tracker_app/modules/expense_management/presentation/controllers/home_controller.dart';
+import 'package:expense_tracker_app/modules/expense_management/presentation/controllers/expense_controller.dart';
+import 'package:expense_tracker_app/utils/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ExpenseSummaryCard extends GetView<HomeController> {
+class ExpenseSummaryCard extends GetView<ExpenseController> {
   const ExpenseSummaryCard({super.key});
 
   @override
@@ -61,9 +62,10 @@ class ExpenseSummaryCard extends GetView<HomeController> {
                       value: controller.orderBy.value,
                       onChanged: (String? newValue) {
                         controller.orderBy.value = newValue ?? 'Weekly';
+                        controller.getExpenses();
                         debugPrint('order:: ${controller.orderBy.value}');
                       },
-                      items: <String>['Weekly', 'Monthly']
+                      items: AppConstants.orderBy
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,

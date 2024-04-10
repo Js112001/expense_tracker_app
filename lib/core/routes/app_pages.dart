@@ -13,7 +13,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.home,
       page: () => const HomePage(),
-      binding: HomeBinding(),
+      binding: ExpenseBinding(),
     ),
     GetPage(
       name: AppRoutes.allExpenses,
@@ -22,7 +22,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.addExpense,
-      page: () => AddExpensePage(),
+      page: () => const AddExpensePage(),
       binding: ExpenseBinding(),
     ),
   ];

@@ -1,10 +1,15 @@
+import 'package:expense_tracker_app/modules/expense_management/presentation/controllers/expense_controller.dart';
+import 'package:expense_tracker_app/utils/constants/app_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class CategoriesGrid extends StatelessWidget {
+class CategoriesGrid extends GetView<ExpenseController> {
   const CategoriesGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final categories = AppConstants.allCategories;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -29,7 +34,7 @@ class CategoriesGrid extends StatelessWidget {
                     ? 2
                     : 4,
             physics: const NeverScrollableScrollPhysics(),
-            children: List.generate(4, (index) {
+            children: List.generate(categories.length, (index) {
               return Center(
                 child: SizedBox(
                   width: MediaQuery.sizeOf(context).width / 2,
@@ -53,12 +58,9 @@ class CategoriesGrid extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(
-                              Icons.ac_unit_rounded,
-                              size: 50,
-                            ),
+                            categories[index]['icon'],
                             Text(
-                              'Item $index',
+                              '${categories[index]['name']}',
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium
@@ -66,14 +68,16 @@ class CategoriesGrid extends StatelessWidget {
                                     fontSize: 20,
                                   ),
                             ),
-                            Text(
-                              '\$ 500',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(
-                                    fontSize: 22,
-                                  ),
+                            Obx(
+                              () => Text(
+                                '\$ ${controller.categoryExpenses[index]}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                      fontSize: 22,
+                                    ),
+                              ),
                             ),
                           ],
                         ),

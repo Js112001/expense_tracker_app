@@ -1,9 +1,11 @@
 import 'package:expense_tracker_app/core/routes/app_routes.dart';
-import 'package:expense_tracker_app/modules/expense_management/presentation/controllers/home_controller.dart';
+import 'package:expense_tracker_app/modules/expense_management/domain/entities/expense_entity.dart';
+import 'package:expense_tracker_app/modules/expense_management/presentation/controllers/expense_controller.dart';
+import 'package:expense_tracker_app/utils/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LatestEntries extends GetView<HomeController> {
+class LatestEntries extends GetView<ExpenseController> {
   const LatestEntries({super.key});
 
   @override
@@ -37,26 +39,28 @@ class LatestEntries extends GetView<HomeController> {
         ),
         controller.expenses.isNotEmpty
             ? SizedBox(
-                height: MediaQuery.sizeOf(context).height / 3,
+                height: MediaQuery.sizeOf(context).height / 4,
                 child: ListView.builder(
-                  itemCount: controller.expenses.length,
+                  itemCount: 5,
                   itemBuilder: (context, index) {
+                    index = controller.expenses.length - index - 1;
+                    final expense = controller.expenses[index] as ExpenseEntity;
                     return ListTile(
-                      leading: const Icon(
-                        Icons.ac_unit_outlined,
-                        size: 35,
-                        color: Colors.cyan,
-                      ),
+                      leading: AppConstants.allCategories
+                          .where(
+                              (element) => element['name'] == expense.category)
+                          .toList()
+                          .first['icon'] as Widget,
                       title: Text(
-                        'Breakfast',
+                        expense.name,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       subtitle: Text(
-                        '02 Dec 2020',
+                        expense.date.toString().substring(0,10),
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                       trailing: Text(
-                        '\$ 10',
+                        '\$ ${expense.amount}',
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
                               fontSize: 18,
                             ),

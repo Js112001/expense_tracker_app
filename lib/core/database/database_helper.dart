@@ -18,7 +18,7 @@ class DatabaseHelper {
   }
 
   Future<Database> initDatabase() async {
-    final String path = join(await getDatabasesPath(), 'expense_tracker.db');
+    final String path = join(await getDatabasesPath(), 'expense_app.db');
     return await openDatabase(
       path,
       version: 1,
@@ -29,11 +29,12 @@ class DatabaseHelper {
   Future<void> _createDatabase(Database db, int version) async {
     await db.execute('''
       CREATE TABLE expenses (
-        id TEXT PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
         amount REAL,
         category TEXT,
         date TEXT,
-        notes TEXT
+        notes TEXT NULL
       )
     ''');
   }
