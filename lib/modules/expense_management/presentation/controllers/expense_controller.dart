@@ -22,6 +22,7 @@ class ExpenseController extends GetxController {
   );
 
   final formKey = GlobalKey<FormState>();
+  int? id;
   String? name;
   String? selectedCategory;
   double? amount;
@@ -45,6 +46,13 @@ class ExpenseController extends GetxController {
     date = DateTime.now();
     dateController.text = date.toString().substring(0, 10);
     getExpenses();
+  }
+
+  @override
+  void onClose() {
+    selectedCategory = '';
+    dateController.dispose();
+    super.onClose();
   }
 
   void showDeleteDialog(ExpenseEntity expense, BuildContext context) {
@@ -181,7 +189,36 @@ class ExpenseController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
     }
+  }
 
-    debugPrint('Expense object: $expense');
+  void updateExpense() async {
+    final expense = ExpenseEntity(
+      id: id,
+      name: name ?? '',
+      amount: amount ?? 0,
+      category: selectedCategory ?? '',
+      date: date ?? DateTime.now(),
+      notes: notes ?? '',
+    );
+
+    final response = await _updateExpenseUseCase(params: expense);
+
+    if (response != 0) {
+      Get.snackbar(
+        'Update Expense',
+        'Expense Updated Successfully',
+        backgroundColor: Colors.lightGreenAccent,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      getExpenses();
+      Get.offNamed(AppRoutes.home);
+    } else {
+      Get.snackbar(
+        'Update Expense',
+        'Expense Update Failed',
+        backgroundColor: Colors.redAccent,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
   }
 }

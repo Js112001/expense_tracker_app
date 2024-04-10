@@ -4,6 +4,7 @@ import 'package:expense_tracker_app/modules/expense_management/presentation/bind
 import 'package:expense_tracker_app/modules/expense_management/presentation/pages/add_expense_page.dart';
 import 'package:expense_tracker_app/modules/expense_management/presentation/pages/all_expenses_page.dart';
 import 'package:expense_tracker_app/modules/expense_management/presentation/pages/home_page.dart';
+import 'package:expense_tracker_app/modules/expense_management/presentation/pages/update_expense_page.dart';
 import 'package:get/get.dart';
 
 class AppPages {
@@ -23,6 +24,11 @@ class AppPages {
     GetPage(
       name: AppRoutes.addExpense,
       page: () => const AddExpensePage(),
+      binding: ExpenseBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.updateExpense,
+      page: () => const UpdateExpensePage(),
       binding: ExpenseBinding(),
     ),
   ];

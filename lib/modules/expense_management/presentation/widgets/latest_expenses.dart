@@ -48,6 +48,8 @@ class LatestEntries extends GetView<ExpenseController> {
                     return ListTile(
                       onLongPress: () =>
                           controller.showDeleteDialog(expense, context),
+                      onTap: () => Get.toNamed(AppRoutes.updateExpense,
+                          arguments: {'expense': expense}),
                       leading: AppConstants.allCategories
                           .where(
                               (element) => element['name'] == expense.category)

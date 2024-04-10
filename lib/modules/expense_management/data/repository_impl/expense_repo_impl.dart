@@ -45,7 +45,7 @@ class ExpenseRepoImpl extends ExpenseRepository {
       amount: expense.amount,
       category: expense.category,
       date: expense.date,
-      notes: expense.notes,
+      notes: expense.notes ?? '',
     );
     try {
       return await _expenseDataSource.updateExpense(expenseModel);

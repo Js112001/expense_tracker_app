@@ -14,4 +14,9 @@ class ExpenseEntity {
     required this.date,
     this.notes,
   });
+
+  @override
+  String toString() {
+    return 'Expense(id: $id, name: $name, amount: $amount, category: $category, date: $date, notes: $notes)';
+  }
 }
