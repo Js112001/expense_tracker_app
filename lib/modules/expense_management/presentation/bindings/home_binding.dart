@@ -10,7 +10,7 @@ class HomeBinding extends Bindings {
     Get.lazyPut(() => ExpenseDataSource());
     Get.lazyPut(() => ExpenseRepoImpl(Get.find<ExpenseDataSource>()));
     Get.lazyPut(() => GetExpensesUseCase(Get.find<ExpenseRepoImpl>()));
-    Get.lazyPut(() => HomeController(Get.find<GetExpensesUseCase>()));
+    Get.lazyPut(() => HomeController());
 
   }
 }

@@ -1,10 +1,13 @@
+import 'package:expense_tracker_app/core/local_notification/local_notification.dart';
 import 'package:expense_tracker_app/core/routes/app_pages.dart';
 import 'package:expense_tracker_app/core/routes/app_routes.dart';
 import 'package:expense_tracker_app/core/themes/dark_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await NotificationService().init();
   runApp(const MyApp());
 }
 

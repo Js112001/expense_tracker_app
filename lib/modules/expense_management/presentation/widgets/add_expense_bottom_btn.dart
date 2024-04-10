@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/core/local_notification/local_notification.dart';
 import 'package:expense_tracker_app/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,9 @@ class AddExpenseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.sizeOf(context).width,
+      width: MediaQuery
+          .sizeOf(context)
+          .width,
       decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(
@@ -22,17 +25,28 @@ class AddExpenseButton extends StatelessWidget {
           horizontal: 20,
         ),
         child: ElevatedButton(
-          onPressed: () => Get.toNamed(AppRoutes.addExpense),
+          onPressed: () {
+
+            NotificationService().scheduleNotification();
+            Get.toNamed(AppRoutes.addExpense);
+          },
           style: ButtonStyle(
             backgroundColor: MaterialStatePropertyAll(
-              Theme.of(context).colorScheme.primary,
+              Theme
+                  .of(context)
+                  .colorScheme
+                  .primary,
             ),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15,),
             child: Text(
               "Add Expense",
-              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .titleSmall
+                  ?.copyWith(
                 fontSize: 20,
                 fontFamily: 'NotoSans',
               ),
