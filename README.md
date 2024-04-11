@@ -32,3 +32,11 @@ I used [flutter_local_notifications](https://pub.dev/packages/flutter_local_noti
 
 **Make sure to allow notification permission for app to get reminders**
 
+**Below is final app**
+
+
+
+https://github.com/Js112001/expense_tracker_app/assets/87539750/2993257f-c307-4810-a65c-c97a089008bb
+
+
+
