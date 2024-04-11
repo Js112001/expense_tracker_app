@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/core/routes/app_routes.dart';
 import 'package:expense_tracker_app/modules/expense_management/domain/entities/expense_entity.dart';
 import 'package:expense_tracker_app/modules/expense_management/presentation/controllers/expense_controller.dart';
 import 'package:expense_tracker_app/utils/constants/app_constants.dart';
@@ -28,6 +29,8 @@ class AllExpensesPage extends GetView<ExpenseController> {
                           return ListTile(
                             onLongPress: () => controller.showDeleteDialog(
                                 expense, context),
+                            onTap: () => Get.toNamed(AppRoutes.updateExpense,
+                                arguments: {'expense': expense}),
                             leading: AppConstants.allCategories
                                 .where((element) =>
                                     element['name'] == expense.category)
