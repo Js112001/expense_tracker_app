@@ -148,7 +148,7 @@ class ExpenseController extends GetxController {
         totalExpense.value = 0.0;
       }
       for (ExpenseEntity expense in expenses) {
-        if (index == 0) {
+        if (index == 0 && categories.contains(expense.category)) {
           totalExpense.value += expense.amount;
         }
         if (expense.category == category) {
