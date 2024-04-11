@@ -37,4 +37,10 @@ class AppConstants {
   ];
 
   static List<String> orderBy = ['Weekly', 'Monthly'];
+
+  static String reminderTitle = 'Daily Reminder';
+  static String reminderContent = "Don't forget to record your daily expenses";
+  static int reminderHours = 0;
+  static int reminderMinutes = 0;
+  static int reminderSeconds = 5;
 }

@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/core/background_service/background_service.dart';
 import 'package:expense_tracker_app/core/local_notification/local_notification.dart';
 import 'package:expense_tracker_app/core/routes/app_pages.dart';
 import 'package:expense_tracker_app/core/routes/app_routes.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await NotificationService().init();
+  await BackgroundService.initialize();
   runApp(const MyApp());
 }
 
