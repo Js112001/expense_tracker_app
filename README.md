@@ -1,3 +1,4 @@
+[![Jabbar's GitHub stats](https://github-readme-stats.vercel.app/api?username=Js112001)](https://github.com/anuraghazra/github-readme-stats)
 # Expense Tracker
 
 A Flutter expense tracking project. It manages the expenses (Create,Read,Update,Delete) as well as 
